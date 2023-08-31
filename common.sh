@@ -19,7 +19,7 @@ func_appreq(){
 func_systemd(){
     systemctl daemon-reload
     systemctl enable ${component}
-    systemctl start ${component}
+    systemctl restart ${component} ; tail -f /var/log/messages
 }
 func_nodejs(){
 
