@@ -12,8 +12,8 @@ func_appreq(){
     echo -e "\e[36m >>>>>>>>>>>>Download Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
     echo -e "\e[36m >>>>>>>>>>>>Extract Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-    cd /app
-    unzip /tmp/${component}.zip
+    cd /app &>>${log}
+    unzip /tmp/${component}.zip &>>${log}
     cd /app &>>${log}
 }
 func_systemd(){
