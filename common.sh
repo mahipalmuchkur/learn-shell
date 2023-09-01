@@ -13,7 +13,7 @@ func_appreq(){
    echo -e "\e[36m >>>>>>>>>>>>Creating Application ${component}<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     useradd roboshop &>>${log}
 
-     if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ]; then
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
@@ -91,7 +91,7 @@ func_nodejs(){
         echo -e "\e[36m SUCCESS \e[0m"
       else
         echo -e "\e[31m FAILURE \e[0m"
-    fi
+   fi
 
   func_appreq
 
