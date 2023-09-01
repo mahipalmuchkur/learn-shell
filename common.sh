@@ -8,7 +8,7 @@ func_appreq(){
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-  fi
+     fi
 
    echo -e "\e[36m >>>>>>>>>>>>Creating Application ${component}<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     useradd roboshop &>>${log}
@@ -17,7 +17,7 @@ func_appreq(){
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-  fi
+    fi
 
     echo -e "\e[36m >>>>>>>>>>>>Cleaning Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     rm -rf /app &>>${log}
@@ -27,6 +27,8 @@ func_appreq(){
     else
       echo -e "\e[31m FAILURE \e[0m"
      fi
+
+
     echo -e "\e[36m >>>>>>>>>>>>Creating Application Directory<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     mkdir /app &>>${log}
 
@@ -254,6 +256,7 @@ func_golang(){
   echo -e "\e[36m >>>>>>>>>>>>Loading the Service<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
   func_systemd
+
    if [ $? -eq 0 ]; then
       echo -e "\e[36m SUCCESS \e[0m"
     else
