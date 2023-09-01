@@ -1,23 +1,31 @@
 log=/tmp/roboshop.log
 
 func_exit_status(){
-  if[ $? -eq 0 ]; then
-    echo -e "\e[32m Success \e[0m"
-    else
-    echo -e "\e[31m Failure \e[0m"
-    fi
+
 }
 
 func_appreq(){
   echo -e "\e[36m >>>>>>>>>>>>Creating ${component} Servie<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
-    func_exit_status
+    if[ $? -eq 0 ]; then
+        echo -e "\e[32m Success \e[0m"
+        else
+        echo -e "\e[31m Failure \e[0m"
+        fi
    echo -e "\e[36m >>>>>>>>>>>>Creating Application ${component}<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     useradd roboshop &>>${log}
-    func_exit_status
+    if[ $? -eq 0 ]; then
+        echo -e "\e[32m Success \e[0m"
+        else
+        echo -e "\e[31m Failure \e[0m"
+        fi
     echo -e "\e[36m >>>>>>>>>>>>Cleaning Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     rm -rf /app &>>${log}
-    func_exit_status
+    if[ $? -eq 0 ]; then
+        echo -e "\e[32m Success \e[0m"
+        else
+        echo -e "\e[31m Failure \e[0m"
+        fi
     echo -e "\e[36m >>>>>>>>>>>>Creating Application Directory<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     mkdir /app &>>${log}
     func_exit_status
