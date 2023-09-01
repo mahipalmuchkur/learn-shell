@@ -56,11 +56,13 @@ func_nodejs(){
 
   echo -e "\e[36m >>>>>>>>>>>>Creating Mongo repo file<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
-  if [ $? -eq 0]; then
+
+  if [ $? -eq 0 ]; then
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
   fi
+
   echo -e "\e[36m >>>>>>>>>>>>Installing Nodejs Repo<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
    if [ $? -eq 0]; then
