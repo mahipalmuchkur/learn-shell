@@ -5,9 +5,9 @@ func_appreq(){
     cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
      if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
      fi
 
    echo -e "\e[36m >>>>>>>>>>>>Creating Application ${component}<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
@@ -23,9 +23,9 @@ func_appreq(){
     rm -rf /app &>>${log}
 
      if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
      fi
 
 
@@ -33,18 +33,18 @@ func_appreq(){
     mkdir /app &>>${log}
 
      if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
      fi
 
     echo -e "\e[36m >>>>>>>>>>>>Download Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
     curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
 
      if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
      fi
 
     echo -e "\e[36m >>>>>>>>>>>>Extract Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
@@ -53,9 +53,9 @@ func_appreq(){
     cd /app &>>${log}
 
      if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
      fi
 }
 func_systemd(){
@@ -87,7 +87,7 @@ func_nodejs(){
   echo -e "\e[36m >>>>>>>>>>>>Install Nodejs<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   yum install nodejs -y &>>${log}
 
-   if [ $? -eq 0]; then
+   if [ $? -eq 0 ]; then
         echo -e "\e[36m SUCCESS \e[0m"
       else
         echo -e "\e[31m FAILURE \e[0m"
@@ -111,7 +111,7 @@ func_nodejs(){
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-    fi
+   fi
 
   echo -e "\e[36m >>>>>>>>>>>>Loading Schema<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   mongo --host mongodb.mdevopsb74.online </app/schema/${component}.js &>>${log}
@@ -210,7 +210,7 @@ func_appreq
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-  fi
+ fi
 
 echo -e "\e[36m >>>>>>>>>>>>Downloading the Dependencies<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 pip3.6 install -r requirements.txt  &>>${log}
@@ -219,7 +219,7 @@ pip3.6 install -r requirements.txt  &>>${log}
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-  fi
+ fi
 
 echo -e "\e[36m >>>>>>>>>>>>Restarting the Service<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
@@ -261,5 +261,5 @@ func_golang(){
       echo -e "\e[36m SUCCESS \e[0m"
     else
       echo -e "\e[31m FAILURE \e[0m"
-  fi
+   fi
 }
