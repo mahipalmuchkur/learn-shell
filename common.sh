@@ -14,9 +14,9 @@ func_appreq(){
     useradd roboshop &>>${log}
 
     if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
     fi
 
     echo -e "\e[36m >>>>>>>>>>>>Cleaning Application Content<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
@@ -116,11 +116,11 @@ func_nodejs(){
   echo -e "\e[36m >>>>>>>>>>>>Loading Schema<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   mongo --host mongodb.mdevopsb74.online </app/schema/${component}.js &>>${log}
 
-   if [ $? -eq 0 ]; then
-      echo -e "\e[36m SUCCESS \e[0m"
-    else
-      echo -e "\e[31m FAILURE \e[0m"
-   fi
+    if [ $? -eq 0 ]; then
+        echo -e "\e[36m SUCCESS \e[0m"
+      else
+        echo -e "\e[31m FAILURE \e[0m"
+    fi
 
   echo -e "\e[36m >>>>>>>>>>>>Daemon-reload Enabling and Restarting<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
