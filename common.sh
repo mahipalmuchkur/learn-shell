@@ -61,9 +61,10 @@ func_exit_status
       echo -e "\e[36m >>>>>>>>>>>>Loading Schema<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
       mongo --host mongodb.mdevopsb74.online </app/schema/${component}.js &>>${log}
   fi
+
 func_exit_status
 
-  if [ "${schema_type}" == "mysql"]; then
+  if [ "${schema_type}" == "mysql" ]; then
     echo -e "\e[36m >>>>>>>>>>>>Installing MySQL<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
       yum install mysql -y  &>>${log}
 
