@@ -73,7 +73,6 @@ func_exit_status
       echo -e "\e[36m >>>>>>>>>>>>online -uroot -pRoboShop@1<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
       mysql -h mysql.mdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql  &>>${log}
   fi
-    func_exit_status
 
 }
 func_nodejs(){
