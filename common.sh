@@ -100,14 +100,11 @@ func_exit_status
   npm install &>>${log}
 
 func_schema_setup
-func_exit_status
 
 
   echo -e "\e[36m >>>>>>>>>>>>Daemon-reload Enabling and Restarting<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
   func_systemd
-
-func_exit_status
 
 }
 
