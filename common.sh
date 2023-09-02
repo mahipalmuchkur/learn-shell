@@ -14,8 +14,8 @@ func_appreq(){
      func_exit_status
 
    echo -e "\e[36m >>>>>>>>>>>>Creating Application ${component}<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-    id = roboshop &>>${log}
 
+    id roboshop &>>${log}
     if [ $? -ne 0 ]; then
       useradd roboshop &>>${log}
     fi
