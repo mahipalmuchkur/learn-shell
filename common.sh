@@ -50,6 +50,31 @@ func_systemd(){
     systemctl enable ${component}
     systemctl restart ${component} ; tail -f /var/log/messages
 }
+
+func_schema_setup(){
+  if [ "${schema_type}" == "mongodb" ]; then
+      echo -e "\e[36m >>>>>>>>>>>>Installing Mongo Client<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
+      yum install mongodb-org-shell -y &>>${log}
+
+func_exit_status
+
+      echo -e "\e[36m >>>>>>>>>>>>Loading Schema<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
+      mongo --host mongodb.mdevopsb74.online </app/schema/${component}.js &>>${log}
+  fi
+func_exit_status
+
+  if [ "${schema_type}" == "mysql"]; then
+    echo -e "\e[36m >>>>>>>>>>>>Installing MySQL<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
+      yum install mysql -y  &>>${log}
+
+      func_exit_status
+
+      echo -e "\e[36m >>>>>>>>>>>>online -uroot -pRoboShop@1<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
+      mysql -h mysql.mdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql  &>>${log}
+  fi
+    func_exit_status
+
+}
 func_nodejs(){
 
 
@@ -73,17 +98,9 @@ func_exit_status
   echo -e "\e[36m >>>>>>>>>>>>Download Nodejs Dependencies<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
   npm install &>>${log}
 
+func_schema_setup
 func_exit_status
 
-  echo -e "\e[36m >>>>>>>>>>>>Installing Mongo Client<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-  yum install mongodb-org-shell -y &>>${log}
-
-func_exit_status
-
-  echo -e "\e[36m >>>>>>>>>>>>Loading Schema<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-  mongo --host mongodb.mdevopsb74.online </app/schema/${component}.js &>>${log}
-
-func_exit_status
 
   echo -e "\e[36m >>>>>>>>>>>>Daemon-reload Enabling and Restarting<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
@@ -111,20 +128,11 @@ func_exit_status
   mv target/${component}-1.0.jar ${component}.jar  &>>${log}
   echo -e "\e[36m >>>>>>>>>>>>DaemonReload and enable start<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 
-func_exit_status
+  func_schema_setup
   func_systemd
 
 func_exit_status
 
-  echo -e "\e[36m >>>>>>>>>>>>Installing MySQL<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-  yum install mysql -y  &>>${log}
-
-  func_exit_status
-
-  echo -e "\e[36m >>>>>>>>>>>>online -uroot -pRoboShop@1<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-  mysql -h mysql.mdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql  &>>${log}
-
-func_exit_status
 
   systemctl restart ${component}
 }
