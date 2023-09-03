@@ -9,7 +9,7 @@ func_exit_status(){
 }
 func_appreq(){
   echo -e "\e[36m >>>>>>>>>>>>Creating ${component} Servie<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
-    cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
+  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   func_exit_status
 
