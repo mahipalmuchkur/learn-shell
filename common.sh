@@ -143,7 +143,8 @@ func_exit_status
 
 func_appreq
 
-func_exit_status
+sed -i "s/rabbitmq_app_password/${rabbitmq_app_password}/" /etc/systemd/system/${component}.service
+
 
 echo -e "\e[36m >>>>>>>>>>>>Downloading the Dependencies<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 pip3.6 install -r requirements.txt  &>>${log}

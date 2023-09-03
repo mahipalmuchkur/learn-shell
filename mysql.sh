@@ -29,3 +29,4 @@ func_exit_status
 
 echo -e "\e[36m >>>>>>>>>>>>Restart MYSQL<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 systemctl restart mysqld ; tail -f /var/log/messages  &>>${log}
+func_exit_status
