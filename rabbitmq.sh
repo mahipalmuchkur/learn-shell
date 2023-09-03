@@ -16,8 +16,4 @@ systemctl enable rabbitmq-server
 systemctl start rabbitmq-server &>>${log}
 echo -e "\e[36m >>>>>>>>>>>>create one user for the application<<<<<<<<<<<<<<<< \e[0m"  | tee -a /tmp/roboshop.log
 rabbitmqctl add_user roboshop ${rabbitmq_app_password}
-id roboshop &>>${log}
-    if [ $? -ne 0 ]; then
-      add_user roboshop &>>${log}
-    fi
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${log}
