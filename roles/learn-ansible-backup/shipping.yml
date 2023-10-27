@@ -1,0 +1,15 @@
+- name: Shipping setup
+  hosts: all
+  become: yes
+  vars:
+    component: shipping
+    schema: true
+  tasks:
+    - name: NodeJs setup
+      ansible.builtin.import_tasks: java.yml
+
+
+#component=user
+#source common.sh
+#
+#func_nodejs

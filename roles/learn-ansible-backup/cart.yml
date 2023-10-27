@@ -1,0 +1,16 @@
+- name: Cart setup
+  hosts: all
+  become: yes
+  vars:
+    component: cart
+  tasks:
+    - name: NodeJs setup
+      ansible.builtin.import_tasks: nodejs.yml
+
+
+#component=cart
+#source common.sh
+#
+#func_nodejs
+
+
